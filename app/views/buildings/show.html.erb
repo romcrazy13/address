@@ -1,0 +1,21 @@
+<br>
+<p>
+  <strong>Название города:</strong><br>
+  <%= @building.street.town.town_name %>
+</p>
+<p>
+  <strong>Название улицы:</strong><br>
+  <%= @building.street.street_name %>
+</p>
+<p>
+  <strong>№ здания:</strong><br>
+  <%= @building.number %>
+</p>
+<p>
+  <strong>Тип:</strong><br>
+  <% if @building.have_flet? %>Квартиры<% else %>Особняк<% end %>
+</p>
+
+<br>
+<div class="link"><%= link_to 'Изменить', edit_building_path(@building) %></div>
+<div class="link"><%= link_to 'Назад', buildings_path %></div>

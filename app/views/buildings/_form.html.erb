@@ -1,0 +1,75 @@
+<%= form_for(building) do |f| %>
+    <% if building.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(building.errors.count, "error") %> prohibited this building from being saved:</h2>
+          <ul>
+            <% building.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <p>
+    <div class="field">
+      <strong>Город:</strong><br>
+      <select id="selectTowns" onchange="updateSelectStreets(this.value, <%= Street.all.order("street_name").map{|s| [ s.town_id, s.id, s.street_name ] } %>)">
+        <% @towns.each do |t| %>
+          <option value="<%= t.id %>" <% if t.id == @town_id %> selected <% end %>> <%= t.town_name %> </option>
+        <% end %>
+      </select>
+    </div>
+    </p>
+    <p>
+    <div class="field">
+      <strong>Улица:</strong><br>
+      <%= f.select(:street_id, @streets.map{|u| [ u.street_name, u.id ] }) %>
+    </div>
+    </p>
+    <p>
+    <div class="field">
+      <strong>Здание №:</strong><br>
+      <%= f.text_field :number %>
+    </div>
+    </p>
+    <p>
+    <div class="field">
+      <strong>Тип здания:</strong><br>
+      <%= f.radio_button :have_flet, true, :checked => true %> Квартиры
+      <%= f.radio_button :have_flet, false %> Особняк
+    </div>
+    </p>
+
+    <div class="actions">
+      <%= f.submit "Сохранить" %>
+    </div>
+<% end %>
+
+<script>
+
+  function updateSelectStreets(idTown, streets) {
+      var selector = document.getElementById("building_street_id");
+      clearAllOptions(selector);
+      addOptions(selector, idTown, streets);
+
+      function clearAllOptions(selector) {
+          selector.options.length = 0;
+      }
+
+      function addOptions(selector, idTown, streets) {
+          var a = 0;
+          for (var s = 0; s < streets.length; s++) {
+              if (streets[s][0] == idTown) {
+                  var option = new Option(streets[s][2], streets[s][1]);
+                  selector.appendChild(option);
+                  a = a + 1;
+              }
+          }
+      }
+
+  }
+
+
+</script>
+
+

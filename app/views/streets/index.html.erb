@@ -1,0 +1,40 @@
+<h2>Улицы</h2>
+
+<table>
+  <thead>
+  <tr>
+    <th>Город</th>
+    <th>Улица</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @towns.each do |town| %>
+    <tr>
+      <td><div class="town"><%= town.town_name %></div></td>
+    </tr>
+    <% @streets.each do |street| %>
+      <% if town.id == street.town_id %>
+        <tr>
+          <td></td><td><div class="street"><%= street.street_name %></div></td>
+          <td>
+            <div class="link"><%= link_to 'Показать', street %></div>
+            <div class="link"><%= link_to 'Изменить', edit_street_path(street) %></div>
+            <div class="link"><%= link_to 'Удалить', street, method: :delete, data: { confirm: 'Вы уверены?' } %></div>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<div class="link"><%= link_to 'Новая улица', new_street_path %></div>
+<div class="link"><%= link_to 'На главную', main_index_path %></div>
+
+
+
+
+

@@ -1,0 +1,89 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+th {
+    border-top: solid 3px;
+    border-bottom: solid 3px;
+}
+
+td {
+    padding: 0;
+}
+
+.link {
+    border: solid 1px;
+    border-radius: 10px;
+    background-color: aqua;
+    display: inline-block;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 10px;
+    padding-right: 10px;
+    min-width: 100px;
+    text-align: center;
+}
+
+.town {
+    padding: 0px;
+    border-bottom: solid 1px;
+}
+
+.street {
+    padding: 0px;
+    border-bottom: solid 1px;
+    border-left: solid 1px;
+}
+
+.street_id {
+    padding: 0px;
+    border-bottom: solid 1px;
+}
+
+.building {
+    padding: 0px;
+    border-bottom: solid 1px;
+    border-left: solid 1px;
+}
+
+.building_id {
+    padding: 0px;
+    border-bottom: solid 1px;
+}
+
+.buildingPrefix {
+
+}
+
+select {
+    min-width: 250px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

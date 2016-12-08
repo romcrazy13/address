@@ -1,0 +1,29 @@
+<%= form_for(street) do |f| %>
+    <% if street.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(street.errors.count, "error") %> prohibited this street from being saved:</h2>
+          <ul>
+            <% street.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <p>
+      <div class="field">
+        <strong>Город:</strong><br>
+        <%= f.select(:town_id, Town.all.order('town_name').map{|u| [ u.town_name, u.id ] }) %>
+      </div>
+    </p>
+    <p>
+      <div class="field">
+        <strong>Улица:</strong><br>
+        <%= f.text_field :street_name %>
+      </div>
+    </p>
+
+    <div class="actions">
+      <%= f.submit "Сохранить" %>
+    </div>
+<% end %>

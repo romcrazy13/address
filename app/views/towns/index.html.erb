@@ -1,0 +1,27 @@
+<h2>Города</h2>
+
+<table>
+  <thead>
+  <tr>
+    <th>Город</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @towns.each do |town| %>
+      <tr>
+        <td><div class="town"><%= town.town_name %></div></td>
+        <td>
+          <div class="link"><%= link_to 'Показать', town %></div>
+          <div class="link"><%= link_to 'Изменить', edit_town_path(town) %></div>
+          <div class="link"><%= link_to 'Удалить', town, method: :delete, data: { confirm: 'Вы уверены?' } %></div>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<div class="link"><%= link_to 'Новый город', new_town_path %></div>
+<div class="link"><%= link_to 'На главную', main_index_path %></div>

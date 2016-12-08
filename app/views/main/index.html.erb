@@ -1,0 +1,86 @@
+<header>
+<h1>Всем привет!</h1>
+
+<div class="link"><%= link_to 'Города', towns_path %></div>
+<div class="link"><%= link_to 'Улицы', streets_path %></div>
+<div class="link"><%= link_to 'Здания', buildings_path %></div>
+<br>
+</header>
+
+<div class="three">
+<% s = 1; sf = true; s_count = @streets.length %>
+<% b = 1; bf = true %>
+<% b_count = @buildings.length %>
+
+<ul class="ul-treefree ul-dropfree">
+  <% @towns.each do |t| %>
+    <li id="<%= t.id %>"> <%= t.town_name %>
+    <% while s < s_count do %>
+      <% if @streets[s].town_id == t.id %>
+        <% if sf %> <ul> <% sf = false; end %>
+        <li><%= @streets[s].street_name %>
+          <% while b < b_count do %>
+              <% if @buildings[b].street_id == @streets[s].id %>
+                  <% if bf %> <ul> <% bf = false; end %>
+                  <li>
+                    <div class="building">
+                      <%= @buildings[b].number %>
+                      <% if @buildings[b].have_flet %>
+                        - квартиры
+                      <% else %>
+                        - особняк
+                      <% end %>
+                    </div>
+
+
+
+                  </li>
+              <% end; b = b + 1 %>
+          <% end; if !bf %></ul><% bf = true; end %>
+        </li><% b = 1 %>
+        </li>
+      <% end; s = s + 1 %>
+    <% end; if !sf %></ul><% sf = true; end %>
+    </li><% s = 1 %>
+  <% end %>
+</ul>
+</div>
+
+<div class="properties">
+
+</div>
+
+<script>
+
+    $(".ul-dropfree").find("li:has(ul)").prepend('<div class="drop"></div>');
+    $(".ul-dropfree div.drop").click(function() {
+        if ($(this).nextAll("ul").css('display')=='none') {
+            $(this).nextAll("ul").slideDown(400);
+            $(this).css({'background-position':"-11px 0"});
+        } else {
+            $(this).nextAll("ul").slideUp(400);
+            $(this).css({'background-position':"0 0"});
+        }
+    });
+    $(".ul-dropfree").find("ul").slideUp(400).parents("li").children("div.drop").css({'background-position':"0 0"});
+
+    $(".ul-drop").find("li:has(ul)").prepend('<div class="drop"></div>');
+    $(".ul-drop div.drop").click(function() {
+        if ($(this).nextAll("ul").css('display')=='none') {
+            $(this).nextAll("ul").slideDown(400);
+            $(this).css({'background-position':"-11px 0"});
+        } else {
+            $(this).nextAll("ul").slideUp(400);
+            $(this).css({'background-position':"0 0"});
+        }
+    });
+    $(".ul-drop").find("ul").slideUp(400).parents("li").children("div.drop").css({'background-position':"0 0"});
+
+    $(".lasttreedrophide").click(function(){
+        $("#lasttree").find("ul").slideUp(400).parents("li").children("div.drop").css({'background-position':"0 0"});
+    });
+    $(".lasttreedropshow").click(function(){
+        $("#lasttree").find("ul").slideDown(400).parents("li").children("div.drop").css({'background-position':"-11px 0"});
+    });
+
+</script>
