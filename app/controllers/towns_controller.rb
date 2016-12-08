@@ -41,10 +41,14 @@ class TownsController < ApplicationController
   end
 
   def destroy
-    @town.destroy
-    respond_to do |format|
-      format.html { redirect_to towns_url, notice: 'Town was successfully destroyed.' }
-      format.json { head :no_content }
+    if Street.where(town_id: @town.id).length > 0
+      flash.alert = "В этом городе есть улицы!"
+    else
+      @town.destroy
+      respond_to do |format|
+        format.html { redirect_to towns_url, notice: 'Town was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 

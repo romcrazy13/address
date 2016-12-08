@@ -52,15 +52,17 @@ td {
     border-bottom: solid 1px;
 }
 
-.building {
+.building_type, .town_id, .street_id, .building_id {
+    padding: 0px;
+    border-bottom: solid 1px;
+    text-align: center;
+}
+
+.building_number {
     padding: 0px;
     border-bottom: solid 1px;
     border-left: solid 1px;
-}
-
-.building_id {
-    padding: 0px;
-    border-bottom: solid 1px;
+    text-align: center;
 }
 
 .buildingPrefix {

@@ -14,7 +14,7 @@
   <tbody>
   <% @towns.each do |town| %>
       <tr>
-        <td><div class="town"><%= town.id %></div></td>
+        <td><div class="town_id"><%= town.id %></div></td>
         <td><div class="town"><%= town.town_name %></div></td>
         <% @streets.each do |street| %>
             <% if town.id == street.town_id %>
@@ -28,9 +28,9 @@
                         <td><div class="building_id"><%= building.id %></div></td>
                         <td></td>
                         <td></td>
-                        <td><div class="building" title="<%= town.town_name %>, <%= street.street_name %>"><%= building.number %></div></td>
+                        <td><div class="building_number" title="<%= town.town_name %>, <%= street.street_name %>"><%= building.number %></div></td>
                         <td>
-                          <div class="building_id" title="<%= town.town_name %>, <%= street.street_name %>">
+                          <div class="building_type" title="<%= town.town_name %>, <%= street.street_name %>">
                             <% if building.have_flet? %> Квартиры <% else %> Особняк <% end %>
                           </div>
                         </td>

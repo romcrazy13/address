@@ -8,15 +8,15 @@
 </header>
 
 <div class="three">
-<% s = 1; sf = true; s_count = @streets.length %>
-<% b = 1; bf = true %>
-<% b_count = @buildings.length %>
+<% t = 0; t_count = @towns.length %>
+<% s = 0; sf = true; s_count = @streets.length %>
+<% b = 0; bf = true; b_count = @buildings.length %>
 
 <ul class="ul-treefree ul-dropfree">
-  <% @towns.each do |t| %>
-    <li id="<%= t.id %>"> <%= t.town_name %>
+  <% while t < t_count do %>
+    <li id="<%= @towns[t].id %>"> <%= @towns[t].town_name %>
     <% while s < s_count do %>
-      <% if @streets[s].town_id == t.id %>
+      <% if @streets[s].town_id == @towns[t].id %>
         <% if sf %> <ul> <% sf = false; end %>
         <li><%= @streets[s].street_name %>
           <% while b < b_count do %>
@@ -31,22 +31,41 @@
                         - особняк
                       <% end %>
                     </div>
-
-
-
                   </li>
               <% end; b = b + 1 %>
           <% end; if !bf %></ul><% bf = true; end %>
-        </li><% b = 1 %>
+        </li><% b = 0 %>
         </li>
       <% end; s = s + 1 %>
     <% end; if !sf %></ul><% sf = true; end %>
-    </li><% s = 1 %>
+    </li>
+    <% s = 0 %>
+    <% t = t + 1 %>
   <% end %>
 </ul>
 </div>
 
-<div class="properties">
+<div class="properties"  id="properties">
+  <div>
+    <h3>Города</h3>
+    <% Town.all.each do |t| %>
+        <%= t.id %>   <%= t.town_name %><br>
+    <% end %>
+  </div>
+
+  <div>
+    <h3>Улицы</h3>
+    <% Street.all.each do |s| %>
+        <%= s.id %>   <%= s.town_id %>   <%= s.street_name %><br>
+    <% end %>
+  </div>
+
+  <div>
+    <h3>Здания</h3>
+    <% Building.all.each do |b| %>
+        <%= b.id %>   <%= b.street_id %>   <%= b.number %><br>
+    <% end %>
+  </div>
 
 </div>
 
@@ -84,3 +103,12 @@
     });
 
 </script>
+
+
+
+
+
+
+
+
+
