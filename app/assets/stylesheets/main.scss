@@ -18,17 +18,13 @@ div.building {
   border: none;
 }
 
-.properties {
+#properties {
   display: inline-block;
   border: solid 1px;
   padding: 20px;
   margin: 10px;
   background: cornflowerblue;
-//  visibility: hidden;
-}
-
-#properties div {
-  display: inline-block;
+  visibility: hidden;
 }
 
 ul.ul-treefree {

@@ -45,27 +45,7 @@
 </ul>
 </div>
 
-<div class="properties"  id="properties">
-  <div>
-    <h3>Города</h3>
-    <% Town.all.each do |t| %>
-        <%= t.id %>   <%= t.town_name %><br>
-    <% end %>
-  </div>
-
-  <div>
-    <h3>Улицы</h3>
-    <% Street.all.each do |s| %>
-        <%= s.id %>   <%= s.town_id %>   <%= s.street_name %><br>
-    <% end %>
-  </div>
-
-  <div>
-    <h3>Здания</h3>
-    <% Building.all.each do |b| %>
-        <%= b.id %>   <%= b.street_id %>   <%= b.number %><br>
-    <% end %>
-  </div>
+<div id="properties">
 
 </div>
 
